@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Medicamento index
+{% endblock %}
+
+{% block body %}
+	<h1>
+		Medicamento index
+	</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Id
+				</th>
+				<th>
+					Nome
+				</th>
+				<th>
+					Anotacao
+				</th>
+				<th>
+					Tipo_estoque
+				</th>
+				<th>
+					Unidade_estoque
+				</th>
+				<th>
+					Frequencia_horas
+				</th>
+				<th>
+					Qtd_estoque
+				</th>
+				<th>
+					actions
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for medicamento in medicamentos %}
+				<tr>
+					<td>
+						{{ medicamento.id }}
+					</td>
+					<td>
+						{{ medicamento.nome }}
+					</td>
+					<td>
+						{{ medicamento.anotacao }}
+					</td>
+					<td>
+						{{ medicamento.tipoEstoqueStr }}
+					</td>
+					<td>
+						{{ medicamento.unidadeEstoqueStr }}
+					</td>
+					<td>
+						{{ medicamento.frequenciaHoras }}
+					</td>
+					<td>
+						{{ medicamento.qtdEstoque }}
+					</td>
+					<td>
+						<a href="{{ path('app_medicamentos_show', { id: medicamento.id }) }}">show</a>
+						<a href="{{ path('app_medicamentos_edit', { id: medicamento.id }) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="8">
+						no records found
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_medicamentos_new') }}">Create new</a>
+{% endblock %}

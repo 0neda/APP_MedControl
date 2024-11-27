@@ -39,12 +39,8 @@ class Medicamento
     #[ORM\OneToMany(targetEntity: Componente::class, mappedBy: 'id_medicamento', orphanRemoval: true)]
     private Collection $componentes;
 
-    #[ORM\OneToOne(mappedBy: 'id_medicamento', cascade: ['persist', 'remove'])]
-    private ?Estoque $estoque = null;
-
-    #[ORM\ManyToOne(inversedBy: 'medicamentos')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Usuario $id_usuario = null;
+    #[ORM\Column]
+    private ?float $qtd_estoque = null;
 
     public function __construct()
     {
@@ -80,6 +76,11 @@ class Medicamento
         return $this;
     }
 
+    public function getTipoEstoqueStr(): ?string
+    {
+        return $this->tipo_estoque->value;
+    }
+
     public function getTipoEstoque(): ?EnumTipoEstoque
     {
         return $this->tipo_estoque;
@@ -90,6 +91,11 @@ class Medicamento
         $this->tipo_estoque = $tipo_estoque;
 
         return $this;
+    }
+
+    public function getUnidadeEstoqueStr(): ?string
+    {
+        return $this->unidade_estoque->value;
     }
 
     public function getUnidadeEstoque(): ?EnumUnidadeEstoque
@@ -146,31 +152,14 @@ class Medicamento
         return $this;
     }
 
-    public function getEstoque(): ?Estoque
+    public function getQtdEstoque(): ?float
     {
-        return $this->estoque;
+        return $this->qtd_estoque;
     }
 
-    public function setEstoque(Estoque $estoque): static
+    public function setQtdEstoque(float $qtd_estoque): static
     {
-        // set the owning side of the relation if necessary
-        if ($estoque->getIdMedicamento() !== $this) {
-            $estoque->setIdMedicamento($this);
-        }
-
-        $this->estoque = $estoque;
-
-        return $this;
-    }
-
-    public function getIdUsuario(): ?Usuario
-    {
-        return $this->id_usuario;
-    }
-
-    public function setIdUsuario(?Usuario $id_usuario): static
-    {
-        $this->id_usuario = $id_usuario;
+        $this->qtd_estoque = $qtd_estoque;
 
         return $this;
     }

@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+<div class="bg-red-500">
+	Errors:
+	{{ form_errors(form) }}
+	---
+</div>
+{{ form_widget(form) }}
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

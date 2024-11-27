@@ -5,5 +5,15 @@
 {% endblock %}
 
 {% block body %}
-	<div></div>
+	<div>
+		{% if app.user %}
+			<p>
+				Username: {{ app.user.username }}
+			</p>
+		{% else %}
+			<p>
+				Usuário não está logado
+			</p>
+		{% endif %}
+	</div>
 {% endblock %}

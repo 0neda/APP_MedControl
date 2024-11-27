@@ -41,6 +41,9 @@
 	</head>
 
 	<body class="min-h-screen flex flex-col bg-gradient-to-br bg-dark justify-center items-center from-20% to-80% overflow-x-hidden">
+		<p>
+			Username: {{ app.user.username }}
+		</p>
 		{% set _route = app.request.get('_route') %}
 		<div class="flex-none">
 			{{ include('components/header.html.twig') }}

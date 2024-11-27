@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsuarioRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -32,6 +34,17 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    /**
+     * @var Collection<int, MedicamentoUsuario>
+     */
+    #[ORM\OneToMany(targetEntity: MedicamentoUsuario::class, mappedBy: 'id_usuario', orphanRemoval: true)]
+    private Collection $medicamentos;
+
+    public function __construct()
+    {
+        $this->medicamentos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,5 +119,35 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, MedicamentoUsuario>
+     */
+    public function getMedicamentos(): Collection
+    {
+        return $this->medicamentos;
+    }
+
+    public function addMedicamento(MedicamentoUsuario $medicamento): static
+    {
+        if (!$this->medicamentos->contains($medicamento)) {
+            $this->medicamentos->add($medicamento);
+            $medicamento->setIdUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedicamento(MedicamentoUsuario $medicamento): static
+    {
+        if ($this->medicamentos->removeElement($medicamento)) {
+            // set the owning side to null (unless already changed)
+            if ($medicamento->getIdUsuario() === $this) {
+                $medicamento->setIdUsuario(null);
+            }
+        }
+
+        return $this;
     }
 }

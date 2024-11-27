@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Medicamento
+{% endblock %}
+
+{% block body %}
+	<h1>
+		Medicamento
+	</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>
+					Id
+				</th>
+				<td>
+					{{ medicamento.id }}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Nome
+				</th>
+				<td>
+					{{ medicamento.nome }}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Anotacao
+				</th>
+				<td>
+					{{ medicamento.anotacao }}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Tipo_estoque
+				</th>
+				<td>
+					{{ medicamento.tipoEstoqueStr }}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Unidade_estoque
+				</th>
+				<td>
+					{{ medicamento.unidadeEstoqueStr }}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Frequencia_horas
+				</th>
+				<td>
+					{{ medicamento.frequenciaHoras }}
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Qtd_estoque
+				</th>
+				<td>
+					{{ medicamento.qtdEstoque }}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_medicamentos_index') }}">back to list</a>
+
+	<a href="{{ path('app_medicamentos_edit', { id: medicamento.id }) }}">edit</a>
+
+	{{ include('medicamentos/_delete_form.html.twig') }}
+{% endblock %}
