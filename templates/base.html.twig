@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		{% set page_title %}
+			{% block title %}
+				Início
+			{% endblock %}
+		{% endset %}
+		<title>
+			MedControl - {{ page_title }}
+		</title>
+
+		{% block stylesheets %}
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/all.css" />
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/sharp-duotone-thin.css" />
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/sharp-duotone-solid.css" />
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/sharp-duotone-regular.css" />
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/sharp-duotone-light.css" />
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/sharp-thin.css" />
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/sharp-solid.css" />
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/sharp-regular.css" />
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/sharp-light.css" />
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/duotone-thin.css" />
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/duotone-regular.css" />
+			<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.1/css/duotone-light.css" />
+			{{ vite_entry_link_tags('app') }}
+		{% endblock %}
+
+		<meta name="description" content="{{ block('title') }}" />
+
+		<link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}" />
+		<link rel="apple-touch-icon" href="{{ asset('icon.png') }}" />
+
+		{% block javascripts %}
+			{{ vite_entry_script_tags('app') }}
+		{% endblock %}
+		<script src="https://unpkg.com/htmx.org@2.0.3"></script>
+		<meta name="theme-color" content="#00c9ff" />
+	</head>
+
+	<body class="min-h-screen flex flex-col bg-gradient-to-br bg-dark justify-center items-center from-20% to-80% overflow-x-hidden">
+		{% set _route = app.request.get('_route') %}
+		<div class="flex-none">
+			{{ include('components/header.html.twig') }}
+			{{ include('components/navigation.html.twig') }}
+		</div>
+		<main class="flex-grow p-4">
+			{% block body %}
+
+			{% endblock %}
+		</main>
+	</body>
+</html>

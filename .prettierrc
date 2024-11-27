@@ -1,0 +1,16 @@
+{
+	"arrowParens": "avoid",
+	"bracketSameLine": true,
+	"enableDebugLogs": true,
+	"printWidth": 140,
+	"quoteProps": "consistent",
+	"singleQuote": false,
+	"jsxSingleQuote": false,
+	"tabWidth": 4,
+	"singleAttributePerLine": false,
+	"useTabs": true,
+	"vueIndentScriptAndStyle": true,
+	"twigAlwaysBreakObjects": false,
+	"twigSingleQuote": true,
+	"plugins": ["@zackad/prettier-plugin-twig"]
+}
