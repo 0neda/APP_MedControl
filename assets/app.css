@@ -9,7 +9,6 @@
 	--color-primary-focus: oklch(0.83 0.12 221.67 / 1);
 	--color-primary-focus-ring: oklch(0.89 0.07 222.56 / 1);
 	--color-primary-border: oklch(0.68 0.13 226.85 / 1);
-	--color-primary-content: oklch(1 0 0 / 1);
 
 	--color-secondary: oklch(0.5 0.29 284.72 / 1);
 	--color-secondary-hover: oklch(0.43 0.25 285.78 / 1);
@@ -25,7 +24,7 @@
 	--color-accent-focus: oklch(0.84 0.14 165.58 / 1);
 	--color-accent-focus-ring: oklch(0.91 0.09 168.08 / 1);
 	--color-accent-border: oklch(0.68 0.15 160.25 / 1);
-	--color-accent-content: oklch(1 0 0 / 1);
+	--color-accent-content: oklch(0 0 0 / 1);
 
 	--color-success: var(--color-accent);
 	--color-success-hover: var(--color-accent-hover);
@@ -97,7 +96,6 @@
 @plugin "daisyui" {
 	themes:
 		light --default,
-		dark --default,
 		app;
 }
 
@@ -113,7 +111,7 @@
 	--color-primary-focus: oklch(0.83 0.12 221.67 / 1);
 	--color-primary-focus-ring: oklch(0.89 0.07 222.56 / 1);
 	--color-primary-border: oklch(0.68 0.13 226.85 / 1);
-	--color-primary-content: oklch(1 0 0 / 1);
+	--color-primary-content: oklch(46.74% 0.1131 248.37);
 
 	--color-secondary: oklch(0.5 0.29 284.72 / 1);
 	--color-secondary-hover: oklch(0.43 0.25 285.78 / 1);
@@ -137,7 +135,7 @@
 	--color-success-focus: var(--color-accent-focus);
 	--color-success-focus-ring: var(--color-accent-focus-ring);
 	--color-success-border: var(--color-accent-border);
-	--color-success-content: var(--color-accent-content);
+	--color-accent-content: oklch(0 0 0 / 1);
 
 	--color-warning: oklch(0.81 0.17 75.87 / 1);
 	--color-warning-hover: oklch(0.7 0.15 73.91 / 1);

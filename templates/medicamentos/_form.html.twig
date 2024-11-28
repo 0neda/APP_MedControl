@@ -1,9 +1,27 @@
-{{ form_start(form) }}
-<div class="bg-red-500">
-	Errors:
-	{{ form_errors(form) }}
-	---
+{% form_theme form 'form/formularios.html.twig' %}
+
+{{ form_start(form, { attr: { class: 'p-4 items-center justify-center flex flex-col w-full' } }) }}
+
+<div class="grid w-full grid-flow-row grid-cols-2 gap-4 p-4 rounded-lg">
+	{{ form_row(form.nome) }}
+	{{ form_row(form.anotacao) }}
+	{{ form_row(form.frequencia_horas) }}
+
+	{% block divisor_form %}
+		<div class="flex items-center justify-center col-span-2">
+			<hr class="w-full border-t border-gray-300" />
+			<span class="px-2 text-xs text-gray-400">ESTOQUE</span>
+			<hr class="w-full border-t border-gray-300" />
+		</div>
+	{% endblock %}
+
+	{{ form_row(form.tipo_estoque) }}
+	{{ form_row(form.qtd_estoque) }}
+	{{ form_row(form.unidade_estoque) }}
 </div>
-{{ form_widget(form) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
+
+<button class="w-16 h-16 text-5xl text-white transition-all duration-300 rounded-lg btn btn-success active:scale-95 bg-success hover:bg-success-hover">
+	<i class="fa-thin {{ button_icon|default('fa-plus') }}"></i>
+</button>
+
 {{ form_end(form) }}

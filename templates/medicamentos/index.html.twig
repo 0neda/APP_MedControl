@@ -5,77 +5,52 @@
 {% endblock %}
 
 {% block body %}
-	<h1>
-		Medicamento index
-	</h1>
-
-	<table class="table">
-		<thead>
-			<tr>
-				<th>
-					Id
-				</th>
-				<th>
-					Nome
-				</th>
-				<th>
-					Anotacao
-				</th>
-				<th>
-					Tipo_estoque
-				</th>
-				<th>
-					Unidade_estoque
-				</th>
-				<th>
-					Frequencia_horas
-				</th>
-				<th>
-					Qtd_estoque
-				</th>
-				<th>
-					actions
-				</th>
-			</tr>
-		</thead>
-		<tbody>
+	{% if medicamentos %}
+		<div class="grid grid-flow-row grid-cols-1 gap-6 p-4 md:grid-cols-2">
 			{% for medicamento in medicamentos %}
-				<tr>
-					<td>
-						{{ medicamento.id }}
-					</td>
-					<td>
+				<div id="medicamento-{{ medicamento.id }}" class="flex flex-col space-y-4 bg-white rounded-lg shadow-md">
+					<h2 class="p-4 pb-2 text-xl font-semibold text-center text-gray-800">
 						{{ medicamento.nome }}
-					</td>
-					<td>
-						{{ medicamento.anotacao }}
-					</td>
-					<td>
-						{{ medicamento.tipoEstoqueStr }}
-					</td>
-					<td>
-						{{ medicamento.unidadeEstoqueStr }}
-					</td>
-					<td>
-						{{ medicamento.frequenciaHoras }}
-					</td>
-					<td>
-						{{ medicamento.qtdEstoque }}
-					</td>
-					<td>
-						<a href="{{ path('app_medicamentos_show', { id: medicamento.id }) }}">show</a>
-						<a href="{{ path('app_medicamentos_edit', { id: medicamento.id }) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="8">
-						no records found
-					</td>
-				</tr>
+					</h2>
+					<div class="flex-grow px-4 space-y-2 text-gray-600">
+						<p class="flex items-center gap-2">
+							<i class="fa-solid fa-box-archive"></i>
+							<span>Estoque: {{ medicamento.qtdEstoque }} {{ medicamento.unidadeEstoqueStr }}</span>
+						</p>
+						<p class="flex items-center gap-2">
+							<i class="fa-regular fa-clock"></i>
+							<span>Frequência: {{ medicamento.frequenciaHoras }}h</span>
+						</p>
+					</div>
+					<div class="flex justify-around p-3 pt-2 bg-gray-100">
+						<a href="{{ path('app_medicamentos_show', { id: medicamento.id }) }}"
+							class="text-blue-500 transition-colors hover:text-blue-700">
+							<i class="fa-regular fa-eye fa-xl"></i>
+						</a>
+						<a href="{{ path('app_medicamentos_edit', { id: medicamento.id }) }}"
+							class="transition-colors text-success hover:text-emerald-600">
+							<i class="fa-regular fa-pen-to-square fa-xl"></i>
+						</a>
+					</div>
+				</div>
 			{% endfor %}
-		</tbody>
-	</table>
-
-	<a href="{{ path('app_medicamentos_new') }}">Create new</a>
+		</div>
+	{% else %}
+		<div class="grid grid-flow-row grid-rows-5 gap-4 p-4 grow">
+			<div class="grid grid-flow-row grid-cols-3 grid-rows-1 row-start-3 gap-2 p-2 bg-white shadow-2xl rounded-2xl">
+				<div class="content-center col-span-2 row-span-1 p-2 text-center">
+					<p class="text-lg text-error">
+						Nenhum medicamento cadastrado.
+					</p>
+					<p class="text-xl md:text-2xl text-accent-content">
+						Que tal começar pelo primeiro?
+					</p>
+				</div>
+				<a href="{{ path('app_medicamentos_new') }}"
+					class="content-center row-span-1 text-center transition-all duration-300 active:scale-95 text-8xl bg-success rounded-3xl hover:bg-success-hover">
+					<i class="text-white fa-thin fa-plus"></i>
+				</a>
+			</div>
+		</div>
+	{% endif %}
 {% endblock %}

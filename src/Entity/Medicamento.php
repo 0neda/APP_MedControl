@@ -42,6 +42,12 @@ class Medicamento
     #[ORM\Column]
     private ?float $qtd_estoque = null;
 
+    #[ORM\Column]
+    private ?float $medida_dose = null;
+
+    #[ORM\Column]
+    private ?int $qtd_dose = null;
+
     public function __construct()
     {
         $this->componentes = new ArrayCollection();
@@ -122,6 +128,23 @@ class Medicamento
         return $this;
     }
 
+    public function getQtdEstoque(): ?float
+    {
+        return $this->qtd_estoque;
+    }
+
+    public function setQtdEstoque(float $qtd_estoque): static
+    {
+        $this->qtd_estoque = $qtd_estoque;
+
+        return $this;
+    }
+
+    public function scheduleNotification(): void
+    {
+        // Logic to schedule notification using $this->id and $this->recurrenceTime
+    }
+
     /**
      * @return Collection<int, Componente>
      */
@@ -152,14 +175,26 @@ class Medicamento
         return $this;
     }
 
-    public function getQtdEstoque(): ?float
+    public function getMedidaDose(): ?float
     {
-        return $this->qtd_estoque;
+        return $this->medida_dose;
     }
 
-    public function setQtdEstoque(float $qtd_estoque): static
+    public function setMedidaDose(float $medida_dose): static
     {
-        $this->qtd_estoque = $qtd_estoque;
+        $this->medida_dose = $medida_dose;
+
+        return $this;
+    }
+
+    public function getQtdDose(): ?int
+    {
+        return $this->qtd_dose;
+    }
+
+    public function setQtdDose(int $qtd_dose): static
+    {
+        $this->qtd_dose = $qtd_dose;
 
         return $this;
     }

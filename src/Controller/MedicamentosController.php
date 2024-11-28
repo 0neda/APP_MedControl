@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/medicamentos')]
+#[Route('/')]
 final class MedicamentosController extends AbstractController
 {
-    #[Route(name: 'app_medicamentos_index', methods: ['GET'])]
+    #[Route(name: 'app_dashboard', methods: ['GET'])]
     public function index(MedicamentoRepository $medicamentoRepository): Response
     {
         return $this->render('medicamentos/index.html.twig', [
@@ -33,7 +33,7 @@ final class MedicamentosController extends AbstractController
             $entityManager->persist($medicamento);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_medicamentos_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('medicamentos/new.html.twig', [
@@ -59,7 +59,7 @@ final class MedicamentosController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_medicamentos_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('medicamentos/edit.html.twig', [
@@ -76,6 +76,6 @@ final class MedicamentosController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_medicamentos_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('/', [], Response::HTTP_SEE_OTHER);
     }
 }

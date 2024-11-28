@@ -16,20 +16,15 @@ class MedicamentoRepository extends ServiceEntityRepository
         parent::__construct($registry, Medicamento::class);
     }
 
-//    /**
-//     * @return Medicamento[] Returns an array of Medicamento objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findById($value): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()->getNome();
+    }
+
 
 //    public function findOneBySomeField($value): ?Medicamento
 //    {
