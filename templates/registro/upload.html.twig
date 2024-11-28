@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="p-4">
+        <h1 class="mb-4 text-2xl font-bold">Upload de Documento</h1>
+        
+        {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+            <div class="flex flex-col space-y-2">
+                {{ form_label(form.file, null, {'label_attr': {'class': 'text-sm font-medium'}}) }}
+                {{ form_widget(form.file, {'attr': {'class': 'file-input file-input-bordered w-full'}}) }}
+                {{ form_errors(form.file) }}
+            </div>
+            
+            <button type="submit" class="w-full btn btn-primary">
+                <i class="mr-2 fa-regular fa-upload"></i>
+                Upload
+            </button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

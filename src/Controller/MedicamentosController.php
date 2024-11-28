@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 
 #[Route('/')]
 final class MedicamentosController extends AbstractController
@@ -69,13 +70,22 @@ final class MedicamentosController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_medicamentos_delete', methods: ['POST'])]
-    public function delete(Request $request, Medicamento $medicamento, EntityManagerInterface $entityManager): Response
-    {
+    public function delete(
+        Request $request, 
+        #[MapEntity(id: 'id')] ?Medicamento $medicamento, 
+        EntityManagerInterface $entityManager
+    ): Response {
+        if (!$medicamento) {
+            $this->addFlash('error', 'Medicamento não encontrado.');
+            return $this->redirectToRoute('app_dashboard');
+        }
+    
         if ($this->isCsrfTokenValid('delete'.$medicamento->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($medicamento);
             $entityManager->flush();
+            $this->addFlash('success', 'Medicamento removido com sucesso.');
         }
-
-        return $this->redirectToRoute('/', [], Response::HTTP_SEE_OTHER);
+    
+        return $this->redirectToRoute('app_dashboard', [], Response::HTTP_SEE_OTHER);
     }
 }

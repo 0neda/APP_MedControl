@@ -22,6 +22,7 @@
     "dependencies": {
         "@tailwindcss/vite": "^4.0.0-beta.3",
         "@zackad/prettier-plugin-twig": "^0.12.0",
+        "flowbite": "^3.0.0-beta.1",
         "prettier": "^3.3.3"
     }
 }

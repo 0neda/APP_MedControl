@@ -3,21 +3,100 @@
 {{ form_start(form, { attr: { class: 'p-4 items-center justify-center flex flex-col w-full' } }) }}
 
 <div class="grid w-full grid-flow-row grid-cols-2 gap-4 p-4 rounded-lg">
-	{{ form_row(form.nome) }}
-	{{ form_row(form.anotacao) }}
-	{{ form_row(form.frequencia_horas) }}
+	<div class="flex items-center justify-center col-span-2">
+		<hr class="w-full border-t border-secondary" />
+		<span class="px-2 text-xs text-secondary">MEDICAMENTO</span>
+		<hr class="w-full border-t border-secondary" />
+	</div>
 
-	{% block divisor_form %}
-		<div class="flex items-center justify-center col-span-2">
-			<hr class="w-full border-t border-gray-300" />
-			<span class="px-2 text-xs text-gray-400">ESTOQUE</span>
-			<hr class="w-full border-t border-gray-300" />
+	{{ form_row(form.nome, { label_attr: { class: 'hidden' } }) }}
+	{{ form_row(form.frequencia_horas, { label_attr: { class: 'hidden' } }) }}
+
+	<div class="col-span-2 w-full">
+		{{
+			form_row(
+				form.anotacao,
+				{ attr: { class: 'mt-1 input input-bordered focus:ring-0 focus:outline-0 min-w-full' }, label_attr: { class: 'hidden' } }
+			)
+		}}
+	</div>
+
+	<div class="flex items-center justify-center col-span-2">
+		<hr class="w-full border-t border-secondary" />
+		<span class="px-2 text-xs text-secondary">DOSAGEM</span>
+		<hr class="w-full border-t border-secondary" />
+	</div>
+
+	<div class="col-span-2 w-full grid grid-cols-2 join">
+		<div class="tooltip tooltip-primary" data-tip="Quantos mls/mgs/etc por dose">
+			{{
+				form_row(
+					form.medida_dose,
+					{
+						label_attr: { class: 'hidden' },
+						attr: { class: 'join-item input input-bordered focus:ring-0 focus:outline-0 w-full' }
+					}
+				)
+			}}
 		</div>
-	{% endblock %}
+		<div class="tooltip tooltip-primary" data-tip="Quantos comprimidos/etc por dose">
+			{{
+				form_row(
+					form.qtd_dose,
+					{
+						label_attr: { class: 'hidden' },
+						attr: { class: 'join-item input input-bordered focus:ring-0 focus:outline-0 w-full' }
+					}
+				)
+			}}
+		</div>
+	</div>
 
-	{{ form_row(form.tipo_estoque) }}
-	{{ form_row(form.qtd_estoque) }}
-	{{ form_row(form.unidade_estoque) }}
+	<div class="flex items-center justify-center col-span-2">
+		<hr class="w-full border-t border-secondary" />
+		<span class="px-2 text-xs text-secondary">ESTOQUE</span>
+		<hr class="w-full border-t border-secondary" />
+	</div>
+
+	<div class="col-span-2 w-full grid grid-cols-3 join overflow-x-visible">
+		<div class="tooltip tooltip-primary" data-tip="Qual recipiente?">
+			{{
+				form_row(
+					form.tipo_estoque,
+					{
+						label_attr: { class: 'hidden' },
+						attr: {
+							class: 'join-item select select-bordered w-full max-w-xs col-span-1 text-gray-400 focus:outline-none focus:ring-0'
+						}
+					}
+				)
+			}}
+		</div>
+		<div class="tooltip tooltip-primary" data-tip="Você vai contabilizar de que forma?">
+			{{
+				form_row(
+					form.unidade_estoque,
+					{
+						label_attr: { class: 'hidden' },
+						attr: {
+							class: 'join-item select select-bordered w-full max-w-xs col-span-1 text-gray-400 focus:outline-none focus:ring-0'
+						}
+					}
+				)
+			}}
+		</div>
+		<div class="tooltip tooltip-primary" data-tip="Quantos você tem em estoque?">
+			{{
+				form_row(
+					form.qtd_estoque,
+					{
+						label_attr: { class: 'hidden' },
+						attr: { class: 'join-item input input-bordered focus:ring-0 focus:outline-0 w-full' }
+					}
+				)
+			}}
+		</div>
+	</div>
 </div>
 
 <button class="w-16 h-16 text-5xl text-white transition-all duration-300 rounded-lg btn btn-success active:scale-95 bg-success hover:bg-success-hover">

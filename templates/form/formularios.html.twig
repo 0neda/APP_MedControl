@@ -40,13 +40,6 @@
     {% endif %}
 {%- endblock choice_widget -%}
 
-{%- block range_widget -%}
-    <div class="flex items-center gap-2">
-        <input {{ block('widget_attributes') }} type="range">
-        <span class="range-value"></span>
-    </div>
-{%- endblock range_widget -%}
-
 
 {%- block choice_widget_collapsed -%}
     {%- set attr = attr|merge({ class: attr.class|default('select select-bordered w-full max-w-xs col-span-1 text-gray-400 focus:outline-none focus:ring-0') }) -%}

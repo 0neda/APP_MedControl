@@ -1,14 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Edit Medicamento
+	Editar medicamento
 {% endblock %}
 
 {% block body %}
-	<h1>
-		Edit Medicamento
-	</h1>
-
 	{{ include('medicamentos/_form.html.twig', { button_icon: 'fa-check' }) }}
 
 	{{ include('medicamentos/_delete_form.html.twig') }}

@@ -48,8 +48,8 @@
 		</div>
 
 		<main class="flex flex-col items-center justify-center w-full p-4 grow">
-			<div class="flex flex-col bg-gray-100 grow min-w-[360px] w-full sm:max-w-[580px] md:max-w-[610px] lg:max-w-[640px] rounded-2xl min-h-max overflow-x-hidden shadow-2xl">
-				<div class="flex flex-col items-center justify-center space-x-2 bg-white shadow-md h-[10vh] min-h-[75px] max-h-[90px]">
+			<div class="flex flex-col bg-gray-100 grow min-w-[360px] w-full sm:max-w-[580px] md:max-w-[610px] lg:max-w-[640px] rounded-2xl min-h-max shadow-2xl">
+				<div class="flex flex-col items-center justify-center space-x-2 bg-white shadow-md h-[10vh] min-h-[75px] max-h-[90px] rounded-t-2xl">
 					<ul class="items-center my-4 menu-horizontal">
 						<li>
 							<a href="{{ path('app_dashboard') }}" class="btn btn-circle btn-primary h-12 w-12 min-w-[32px] min-h-[32px]">
@@ -61,21 +61,21 @@
 								<div tabindex="0"
 									role="button"
 									class="m-1 flex justify-center items-center btn btn-circle btn-secondary h-16 w-16 min-w-[48px] min-h-[48px]">
-									<i class="text-4xl fa-light fa-capsules"></i>
+									<i class="text-4xl fa-regular fa-capsules"></i>
 								</div>
 								<ul tabindex="0" class="dropdown-content flex flex-row p-1 space-y-2 rounded-box text-xl text-white z-[1]">
 									<li>
 										<a href="{{ path('app_medicamentos_new') }}"
 											class="flex items-center justify-center p-2 text-2xl rounded-full hover:bg-success-active hover:cursor-pointer bg-success hover:text-success tooltip tooltip-right"
 											data-tip="Criar">
-											<i class="fa-solid fa-plus fa-fw"></i>
+											<i class="fa-regular fa-plus fa-fw"></i>
 										</a>
 									</li>
 									<li>
 										<a href="{{ path('app_dashboard') }}"
 											class="flex items-center justify-center p-2 text-2xl rounded-full hover:bg-success-active hover:cursor-pointer bg-success hover:text-success tooltip tooltip-right"
 											data-tip="Listar">
-											<i class="fa-solid fa-list fa-fw"></i>
+											<i class="fa-regular fa-list fa-fw"></i>
 										</a>
 									</li>
 								</ul>
@@ -83,10 +83,28 @@
 						</li>
 						<li>
 							<li>
-								<a href="{{ path('app_dashboard') }}"
-									class="btn btn-circle btn-primary h-12 w-12 min-w-[32px] min-h-[32px]">
-									<i class="text-2xl fa-light fa-folder-open"></i>
-								</a>
+								<div class="dropdown dropdown-center dropdown-bottom">
+									<div tabindex="0" role="button" class="btn btn-circle btn-primary h-12 w-12 min-w-[32px] min-h-[32px]">
+										<i class="text-2xl fa-regular fa-folder-open"></i>
+									</div>
+									<ul tabindex="0"
+										class="dropdown-content flex flex-row p-1 space-y-2 rounded-box text-xl text-white z-[1]">
+										<li>
+											<a href="{{ path('app_registros_upload') }}"
+												class="flex items-center justify-center p-2 text-2xl rounded-full text-primary-content hover:bg-primary-active hover:cursor-pointer bg-primary hover:text-primary tooltip tooltip-right"
+												data-tip="Carregar Registro">
+												<i class="fa-regular fa-upload fa-fw"></i>
+											</a>
+										</li>
+										<li>
+											<a href="{{ path('app_registros_list') }}"
+												class="flex items-center justify-center p-2 text-2xl rounded-full text-primary-content hover:bg-primary-active hover:cursor-pointer bg-primary hover:text-primary tooltip tooltip-right"
+												data-tip="Listar">
+												<i class="fa-regular fa-list fa-fw"></i>
+											</a>
+										</li>
+									</ul>
+								</div>
 							</li>
 						</li>
 					</ul>
@@ -97,5 +115,6 @@
 				{% endblock %}
 			</div>
 		</main>
+		<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 	</body>
 </html>

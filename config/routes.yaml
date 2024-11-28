@@ -3,3 +3,11 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+upload_registro:
+    path: /registros/upload
+    controller: App\Controller\RegistroController::upload
+
+list_registro:
+    path: /registros
+    controller: App\Controller\RegistroController::index

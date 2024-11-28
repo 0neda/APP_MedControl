@@ -20,36 +20,33 @@ class MedicamentoType extends AbstractType
     {
         $builder
             ->add('nome', TextType::class, [
-                'label' => 'Nome'
-            ])
-            ->add('anotacao', TextType::class, [
-                'label' => 'Anotação pessoal',
-                'required' => false
-            ])
-            ->add('tipo_estoque', ChoiceType::class, [
-                'choices' => EnumTipoEstoque::cases(),
-                'choice_label' => fn($choice) => $choice->value,
-                'placeholder' => 'Selecione',
-                'required' => true,
-                'label' => 'Tipo'
-            ])
-            ->add('unidade_estoque', ChoiceType::class, [
-                //'attr' => ['class' => 'input input-bordered w-full col-span-1'],
-                'choices' => EnumUnidadeEstoque::cases(),
-                'choice_label' => fn($choice) => $choice->value,
-                'placeholder' => 'Selecione a medida',
-                'required' => true,
-                'label' => 'Medida'
+                'attr' => ['placeholder' => 'Nome do medicamento']
             ])
             ->add('frequencia_horas', IntegerType::class, [
                 'attr' => [
                     'min' => 1,
                     'max' => 24,
                     'step' => 1,
-                    'data-value' => "",
-                    'data-show-value' => true
+                    'placeholder' => 'Frequência em horas'
                 ],
-                'label' => 'Frequência em horas'
+            ])
+            ->add('anotacao', TextType::class, [
+                'attr' => ['placeholder' => 'Anotações pessoais'],
+                'required' => false
+            ])
+            ->add('tipo_estoque', ChoiceType::class, [
+                'choices' => EnumTipoEstoque::cases(),
+                'choice_label' => fn($choice) => $choice->value,
+                'placeholder' => 'Recipiente',
+                'required' => true,
+            ])
+            ->add('unidade_estoque', ChoiceType::class, [
+                //'attr' => ['class' => 'input input-bordered w-full col-span-1'],
+                'choices' => EnumUnidadeEstoque::cases(),
+                'choice_label' => fn($choice) => $choice->value,
+                'placeholder' => 'Unidade de medida',
+                'required' => true,
+                'label' => 'Medida'
             ])
             ->add('qtd_estoque', IntegerType::class, [
                 'attr' => [
@@ -57,6 +54,20 @@ class MedicamentoType extends AbstractType
                     'min' => 0
                 ],
                 'label' => 'Quantia em estoque'
+            ])
+            ->add('medida_dose', IntegerType::class, [
+                'attr' => [
+                    'placeholder' => 'Digite a medida da dose',
+                    'min' => 0
+                ],
+                'label' => 'Medida da dose'
+            ])
+            ->add('qtd_dose', IntegerType::class, [
+                'attr' => [
+                    'placeholder' => 'Quantidade por dose',
+                    'min' => 0
+                ],
+                'label' => 'Quantidade por dose'
             ])
         ;
     }

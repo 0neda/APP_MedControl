@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Registros
+{% endblock %}
+
+{% block body %}
+	<div class="p-4">
+		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+			{% for registro in registros %}
+				<div class="p-4 transition-shadow bg-white rounded-lg shadow-md hover:shadow-lg">
+					<div class="mb-2 overflow-hidden border border-gray-200 rounded-lg aspect-square">
+						{% if registro.tipoArquivo == 'pdf' %}
+							<div class="flex items-center justify-center w-full h-full bg-gray-100">
+								<i class="text-4xl text-red-500 fa-regular fa-file-pdf"></i>
+							</div>
+						{% else %}
+							<img src="/uploads/registros/{{ registro.nomeArquivo }}" alt="Preview" class="object-cover w-full h-full" />
+						{% endif %}
+					</div>
+
+					<div class="flex items-center justify-between">
+						<div class="flex-1 truncate">
+							<p class="text-sm font-medium">
+								{{ registro.nomeArquivo }}
+							</p>
+						</div>
+						<div class="flex gap-2 ml-2">
+							<a href="/uploads/registros/{{ registro.nomeArquivo }}" target="_blank" class="btn btn-sm btn-primary">
+								<i class="fa-regular fa-eye"></i>
+							</a>
+							<a href="/uploads/registros/{{ registro.nomeArquivo }}"
+								download="{{ registro.nomeArquivo }}"
+								class="btn btn-sm btn-secondary">
+								<i class="fa-regular fa-download"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<div class="py-8 text-center text-gray-500 col-span-full">
+					<i class="mb-2 text-4xl fa-regular fa-folder-open"></i>
+					<p>
+						Nenhum documento encontrado
+					</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

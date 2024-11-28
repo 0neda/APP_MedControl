@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Medicamento index
+	Lista de medicamentos
 {% endblock %}
 
 {% block body %}
 	{% if medicamentos %}
 		<div class="grid grid-flow-row grid-cols-1 gap-6 p-4 md:grid-cols-2">
 			{% for medicamento in medicamentos %}
-				<div id="medicamento-{{ medicamento.id }}" class="flex flex-col space-y-4 bg-white rounded-lg shadow-md">
+				<div id="medicamento-{{ medicamento.id }}"
+					class="flex flex-col space-y-4 overflow-hidden bg-white border shadow-lg rounded-2xl border-primary/50">
 					<h2 class="p-4 pb-2 text-xl font-semibold text-center text-gray-800">
 						{{ medicamento.nome }}
 					</h2>
@@ -22,13 +23,13 @@
 							<span>Frequência: {{ medicamento.frequenciaHoras }}h</span>
 						</p>
 					</div>
-					<div class="flex justify-around p-3 pt-2 bg-gray-100">
+					<div class="flex justify-around p-3 pt-2 bg-dark">
 						<a href="{{ path('app_medicamentos_show', { id: medicamento.id }) }}"
-							class="text-blue-500 transition-colors hover:text-blue-700">
+							class="transition-colors text-primary hover:text-white">
 							<i class="fa-regular fa-eye fa-xl"></i>
 						</a>
 						<a href="{{ path('app_medicamentos_edit', { id: medicamento.id }) }}"
-							class="transition-colors text-success hover:text-emerald-600">
+							class="transition-colors text-success hover:text-white">
 							<i class="fa-regular fa-pen-to-square fa-xl"></i>
 						</a>
 					</div>
